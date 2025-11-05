@@ -4,6 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/whatsapp-ws-extension-gateway.svg)](https://www.npmjs.com/package/whatsapp-ws-extension-gateway)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub](https://img.shields.io/badge/GitHub-VictorWeston-blue.svg)](https://github.com/VictorWeston/whatsapp-ws-extension-gateway)
 
 A production-ready NPM package that provides a WebSocket gateway for automating WhatsApp through Chrome extensions. This package handles WebSocket connections, API key authentication, message routing, and provides a clean API for sending messages, images, videos, and documents.
 
@@ -19,6 +20,7 @@ A production-ready NPM package that provides a WebSocket gateway for automating 
 ✅ TypeScript type definitions included  
 ✅ Express middleware support  
 ✅ Comprehensive error handling  
+✅ **Enhanced session status tracking** (new in v1.0.4)  
 
 ## Installation
 
@@ -34,6 +36,12 @@ npm install whatsapp-ws-extension-gateway
 ### Optional Peer Dependencies
 
 - `express` - For Express integration (optional)
+
+## Documentation
+
+- 📖 **[Complete Usage Guide](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/blob/main/GUIDE.md)** - Detailed examples for every use case
+- 🔌 **[Chrome Extension Integration](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/blob/main/EXTENSION-INTEGRATION.md)** - WebSocket protocol documentation
+- 🧪 **[Testing Guide](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/blob/main/TESTING.md)** - Testing checklist and examples
 
 ## Quick Start
 
@@ -558,6 +566,27 @@ const messageData: SendMessageData = {
 await gateway.sendMessage('api-key', messageData);
 ```
 
+## Session Status Tracking (Enhanced in v1.0.4)
+
+Sessions now track detailed status information:
+
+```javascript
+const sessions = await gateway.getActiveSessions('api-key-123');
+
+sessions.forEach(session => {
+  console.log({
+    sessionId: session.sessionId,
+    whatsappLoggedIn: session.whatsappLoggedIn,  // Boolean
+    ready: session.ready,                         // Boolean
+    deviceActive: session.deviceActive,           // Boolean (both must be true)
+    status: session.status,                       // "WhatsApp Web logged in" or "Not ready"
+    connectedAt: session.connectedAt,
+    lastHeartbeat: session.lastHeartbeat,
+    lastStatusUpdate: session.lastStatusUpdate
+  });
+});
+```
+
 ## Examples
 
 See the `examples/` directory for complete examples:
@@ -700,17 +729,24 @@ const gateway = new WhatsAppGateway({
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/VictorWeston/whatsapp-ws-extension-gateway).
 
 ## License
 
-MIT © 2025
+MIT © 2025 [Victor Weston](https://github.com/VictorWeston)
 
 ## Support
 
 For issues and questions:
-- GitHub Issues: [Create an issue]
-- Documentation: See examples and API reference above
+- 🐛 **[GitHub Issues](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/issues)** - Report bugs or request features
+- 📖 **[Documentation](https://github.com/VictorWeston/whatsapp-ws-extension-gateway#readme)** - Complete guides and API reference
+- 💬 **[Discussions](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/discussions)** - Ask questions and share ideas
+
+## Links
+
+- **NPM Package:** https://www.npmjs.com/package/whatsapp-ws-extension-gateway
+- **GitHub Repository:** https://github.com/VictorWeston/whatsapp-ws-extension-gateway
+- **Author:** [Victor Weston](https://github.com/VictorWeston)
 
 ---
 
