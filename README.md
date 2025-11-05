@@ -20,7 +20,8 @@ A production-ready NPM package that provides a WebSocket gateway for automating 
 ✅ TypeScript type definitions included  
 ✅ Express middleware support  
 ✅ Comprehensive error handling  
-✅ **Enhanced session status tracking** (new in v1.0.4)  
+✅ Enhanced session status tracking (new in v1.0.4)  
+✅ Interactive CLI test server (available in [GitHub repo](https://github.com/VictorWeston/whatsapp-ws-extension-gateway))  
 
 ## Installation
 
@@ -42,6 +43,7 @@ npm install whatsapp-ws-extension-gateway
 - 📖 **[Complete Usage Guide](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/blob/main/GUIDE.md)** - Detailed examples for every use case
 - 🔌 **[Chrome Extension Integration](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/blob/main/EXTENSION-INTEGRATION.md)** - WebSocket protocol documentation
 - 🧪 **[Testing Guide](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/blob/main/TESTING.md)** - Testing checklist and examples
+- 💻 **[CLI Testing Guide](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/blob/main/CLI-GUIDE.md)** - Interactive testing commands (for repository development only)
 
 ## Quick Start
 
@@ -566,7 +568,46 @@ const messageData: SendMessageData = {
 await gateway.sendMessage('api-key', messageData);
 ```
 
-## Session Status Tracking (Enhanced in v1.0.4)
+## Testing & Development
+
+### Interactive CLI Testing (Repository Only)
+
+**Note:** The interactive CLI test server is available only in the [GitHub repository](https://github.com/VictorWeston/whatsapp-ws-extension-gateway), not in the NPM package.
+
+To use it, clone the repository:
+
+```bash
+git clone https://github.com/VictorWeston/whatsapp-ws-extension-gateway.git
+cd whatsapp-ws-extension-gateway
+npm install
+npm run test:server
+```
+
+**Available Commands:**
+
+```bash
+# Send messages
+send test-api-key-123 +1234567890 Hello World!
+
+# Send test images
+image test-api-key-123 +1234567890 Check this out!
+
+# List connected devices
+devices                      # All devices
+devices test-api-key-123     # Specific API key
+
+# Monitor server
+stats                        # Show statistics
+health                       # Server health check
+logs 20                      # Recent 20 logs
+
+# Run tests
+test                         # Run all automated tests
+```
+
+See **[CLI-GUIDE.md](https://github.com/VictorWeston/whatsapp-ws-extension-gateway/blob/main/CLI-GUIDE.md)** for complete documentation.
+
+### Session Status Tracking (Enhanced in v1.0.4)
 
 Sessions now track detailed status information:
 
