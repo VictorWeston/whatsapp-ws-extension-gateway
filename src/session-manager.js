@@ -44,9 +44,12 @@ class SessionManager {
       apiKey,
       ws,
       ip: metadata.ip || 'unknown',
+      whatsappLoggedIn: false,
+      ready: false,
       deviceActive: false, // Will be set when status message arrives
       connectedAt: Date.now(),
       lastHeartbeat: Date.now(),
+      lastStatusUpdate: null,
       extensionVersion: metadata.extensionVersion,
       browser: metadata.browser,
       pendingRequests: new Map()
@@ -163,7 +166,10 @@ class SessionManager {
   updateSessionStatus(sessionId, status) {
     const session = this.getSession(sessionId);
     if (session) {
+      session.whatsappLoggedIn = status.whatsappLoggedIn;
+      session.ready = status.ready;
       session.deviceActive = status.whatsappLoggedIn && status.ready;
+      session.lastStatusUpdate = Date.now();
     }
   }
 
@@ -296,7 +302,7 @@ class SessionManager {
   }
 
   /**
-   * Get session info for API response (without sensitive data)
+   * Get session information for API display
    * @param {string} apiKey - API key
    * @returns {Array} Array of session info objects
    */
@@ -304,9 +310,13 @@ class SessionManager {
     const sessions = this.getSessions(apiKey);
     return sessions.map(session => ({
       sessionId: session.sessionId,
+      whatsappLoggedIn: session.whatsappLoggedIn,
+      ready: session.ready,
       deviceActive: session.deviceActive,
+      status: session.ready ? 'WhatsApp Web logged in' : 'Not ready',
       connectedAt: session.connectedAt,
       lastHeartbeat: session.lastHeartbeat,
+      lastStatusUpdate: session.lastStatusUpdate,
       extensionVersion: session.extensionVersion,
       browser: session.browser
     }));
