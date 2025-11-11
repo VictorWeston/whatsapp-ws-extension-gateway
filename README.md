@@ -248,6 +248,7 @@ Sends a document/file (max 10MB).
   - `documentUrl` (string) - Document URL (will be auto-converted to base64)
   - `documentDataUrl` (string) - Or provide base64 data URL directly
   - `documentName` (string) - Document filename
+  - `caption` (string, optional) - Caption for the document
 
 **Returns:** Promise<MessageResult>
 
@@ -255,7 +256,8 @@ Sends a document/file (max 10MB).
 await gateway.sendDocument('api-key-123', {
   phoneNumber: '+1234567890',
   documentUrl: 'https://example.com/document.pdf',
-  documentName: 'report.pdf'
+  documentName: 'report.pdf',
+  caption: 'Monthly report - Q4 2024'
 });
 ```
 

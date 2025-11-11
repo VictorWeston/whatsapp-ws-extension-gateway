@@ -474,14 +474,16 @@ const result = await gateway.sendVideo('api-key-123', {
 ```javascript
 const result = await gateway.sendDocument('api-key-123', {
   phoneNumber: '+1234567890',
-  dataUrl: 'data:application/pdf;base64,JVBERi0xLjQKJ...',
-  caption: 'Important document.pdf'
+  documentDataUrl: 'data:application/pdf;base64,JVBERi0xLjQKJ...',
+  documentName: 'document.pdf',
+  caption: 'Important document'
 });
 
 // Or from URL (auto-converted)
 const result = await gateway.sendDocument('api-key-123', {
   phoneNumber: '+1234567890',
-  dataUrl: 'https://example.com/report.pdf',
+  documentUrl: 'https://example.com/report.pdf',
+  documentName: 'report.pdf',
   caption: 'Monthly Report'
 });
 ```

@@ -598,7 +598,7 @@ class WhatsAppGateway {
   /**
    * Send a document
    * @param {string} apiKey - API key
-   * @param {object} data - Document data { phoneNumber, documentUrl OR documentDataUrl, documentName }
+   * @param {object} data - Document data { phoneNumber, documentUrl OR documentDataUrl, documentName, caption }
    * @returns {Promise<object>} Message result
    */
   async sendDocument(apiKey, data) {
@@ -635,7 +635,8 @@ class WhatsAppGateway {
     const command = protocol.createSendDocumentCommand(requestId, {
       phoneNumber: data.phoneNumber,
       documentDataUrl,
-      documentName: data.documentName
+      documentName: data.documentName,
+      caption: data.caption
     });
 
     // Create promise for result

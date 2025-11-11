@@ -201,7 +201,7 @@ function createSendVideoCommand(requestId, data) {
 /**
  * Create send document command
  * @param {string} requestId - Unique request ID
- * @param {object} data - Document data { phoneNumber, documentDataUrl, documentName }
+ * @param {object} data - Document data { phoneNumber, documentDataUrl, documentName, caption }
  * @returns {string} JSON string
  */
 function createSendDocumentCommand(requestId, data) {
@@ -211,7 +211,8 @@ function createSendDocumentCommand(requestId, data) {
     data: {
       phoneNumber: data.phoneNumber,
       documentDataUrl: data.documentDataUrl,
-      documentName: data.documentName
+      documentName: data.documentName,
+      caption: data.caption || ''
     }
   });
 }

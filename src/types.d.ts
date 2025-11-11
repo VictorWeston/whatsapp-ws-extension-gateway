@@ -150,6 +150,9 @@ export interface SendDocumentData {
   
   /** Document filename */
   documentName: string;
+  
+  /** Optional caption for the document */
+  caption?: string;
 }
 
 /**

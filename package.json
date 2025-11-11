@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-ws-extension-gateway",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "WebSocket gateway server for WhatsApp Chrome Extension automation with API key authentication, session management, and support for sending messages, images, videos, and documents.",
   "main": "src/index.js",
   "types": "src/types.d.ts",
